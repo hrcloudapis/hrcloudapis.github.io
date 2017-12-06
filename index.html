@@ -288,28 +288,28 @@
                                                     <td>N/A</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><code>location</code></td>
+                                                    <td><code>location</code><strong>&#42;</strong></td>
                                                     <td><i class="fa fa-times"></i></td>
                                                     <td>N/A</td>
                                                     <td>Tenant default location is used when <code>null</code></td>
                                                     <td><code>name</code> and <code>code</code> required when present</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><code>department</code></td>
+                                                    <td><code>department</code><strong>&#42;</strong></td>
                                                     <td><i class="fa fa-times"></i></td>
                                                     <td>N/A</td>
                                                     <td>Tenant default department is used when <code>null</code></td>
                                                     <td><code>name</code> and <code>code</code> required when present</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><code>division</code></td>
+                                                    <td><code>division</code><strong>&#42;</strong></td>
                                                     <td><i class="fa fa-times"></i></td>
                                                     <td>N/A</td>
                                                     <td>Tenant default division is used when <code>null</code></td>
                                                     <td><code>name</code> and <code>code</code> required when present</td>
                                                 </tr>  
                                                 <tr>
-                                                    <td><code>position</code></td>
+                                                    <td><code>position</code><strong>&#42;</strong></td>
                                                     <td><i class="fa fa-times"></i></td>
                                                     <td>N/A</td>
                                                     <td>Tenant default position is used when <code>null</code></td>
@@ -359,6 +359,20 @@
                                                 </tr>  
                                             </tbody>
                                         </table>
+                                        <div class="callout-block callout-info">
+                                            <div class="icon-holder">
+                                                <i class="fa fa-info-circle"></i>
+                                            </div><!--//icon-holder-->
+                                            <div class="content">
+                                                <h4 class="callout-title">Related Entities<strong>&#42;</strong></h4>
+                                                <p>
+                                                    Entities related to employee&mdash;<code>location</code>, <code>department</code>, <code>position</code>, and <code>division</code>&mdash;are not required to create an employee record; however, if they are included in the JSON body of the request, they <strong>must</strong> contain both <code>name</code> and <code>code</code> or else the request will fail validation.
+                                                </p>
+                                                <p>
+                                                    For all four entities, <code>code</code> must be unique or else the request will fail validation. To update <code>name</code>, ensure <code>code</code> matches and the value of <code>name</code> in the request will be applied to the extisting entity.
+                                                </p>
+                                            </div><!--//content-->
+                                        </div>
                                     </div>
                                 </div>
                             </section><!--//doc-section-->
