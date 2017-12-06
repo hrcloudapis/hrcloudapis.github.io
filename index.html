@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>HR Cloud Employee API</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="HR Cloud">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head> 
+
+<body class="body-green">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                        <span class="text-highlight"><a href="https://www.hrcloud.com/" target="_blank">HR Cloud</a></span> <span class="text-bold">Employee API</span>
+                    </h1>
+                </div><!--//branding-->
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><i class="icon fa fa-file-code-o"></i> Quick Start</h1>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: Nov 30th, 2017</div>
+                </div><!--//doc-header-->
+                <div class="doc-body">
+                    <div class="doc-content">
+                        <div class="content-inner">
+                            <section id="overview-section" class="doc-section">
+                                <h2 class="section-title">Overview</h2>
+                                <div class="section-block">
+                                    <p>
+                                        <a href="https://www.hrcloud.com/" target="_blank">HR Cloud</a>'s Employee API is a RESTful API that allows integration partners to create and update employee data&mdash;as well as associated entities such as departments, locations, and positions&mdash;in HR Cloud.
+                                    </p>
+                                    <p>
+                                        Once the Employee API has been enbabled for your tentant (see below), we suggest using <a href="https://www.getpostman.com/" target="_blank">Postman</a> to get started on trying out some requests.
+                                    </p>
+                                </div>
+                            </section><!--//doc-section-->
+                            <section id="authorization-section" class="doc-section">
+                                <h2 class="section-title">Authorization</h2>
+                                <div id="step1"  class="section-block">
+                                    <h3 class="block-title">Step One</h3>
+                                    <p>
+                                        To begin, navigate to the <a href="https://corehr.hrcloud.com/#/Settings/HrcIntegrationsApi" target="_blank">HR Cloud Integration API</a> settings page and enable the APIs for your tenant.
+                                    </p>
+                                    <div class="callout-block callout-warning">
+                                        <div class="icon-holder">
+                                            <i class="fa fa-exclamation-triangle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">HR Cloud Integrations API Settings</h4>
+                                            <p>For integration partners, the HR Cloud Integrations APIs settings page should be enabled at the tenant level during implementation; however, if you do not see the "HR Cloud Integrations API" submenu item under the "Integrations" category, please, reach out for support.</p>
+                                        </div><!--//content-->
+                                    </div>
+                                </div><!--//section-block-->
+                                <div id="step2"  class="section-block">
+                                    <h3 class="block-title">Step Two</h3>
+                                    <p>
+                                        Once the APIs have been enabled for your tenant, copy the authorization credentials provided for use in all HTTP requests. HR Cloud Integrations APIs use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication" target="_blank">HTTP Basic Authentication</a> scheme so the base64-encoded string provided should be used at the value for the <code>Authorization</code> header in all API requests.
+                                    </p>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            
+                            <section id="errors-section" class="doc-section">
+                                <h2 class="section-title">Errors</h2>
+                                <div class="section-block">
+                                    <p>
+                                        When there's an error procesing your request, the APIs will return a <code>400 Bad Request</code>. The body of the response will contain an error code and description to help you identity the specific issue causing the request to fail. Below is a list of error codes you might encounter:
+                                    </p>
+                                    <div class="code-block">
+                                        <h6>
+                                            Employee API Error Codes and Descriptions
+                                        </h6>
+                                        <pre class="language-json">
+                                            <code class="language-json">
+[
+    {
+        "errorCode": "REQUIRED",
+        "errorDescription": "[property name] is required"
+    },
+    {
+        "errorCode": "INVALID_EMAIL",
+        "errorDescription": "Email is invalid"
+    },
+    {
+        "errorCode": "INVALID_VALUE",
+        "errorDescription": "[value] is invalid"
+    }
+]
+                                            </code>
+                                        </pre>
+                                        <p>
+                                            Generally, the the <code>errorDescription</code> will follow the pattern <code>[property name] is [errorCode]</code>.
+                                        </p>
+                                        <p>
+                                            If you receive a <code>403 Forbidden</code>, check that HR Integrations API has been enabled for your tenant. Also, given API users can choose to generate new authorization credentials, ensure that you update your request headers upon changing the credentials in the <a href="https://corehr.hrcloud.com/#/Settings/HrcIntegrationsApi" target="_blank">HR Cloud Integration API</a> settings page.
+                                        </p>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="employee-section" class="doc-section">
+                                <h2 class="section-title">Employee Records</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Create or update employee records in HR Cloud.
+                                    </p>
+                                    <div class="section-block">
+                                        <h6>Full URL:</h6>
+                                        <p>
+                                            <pre class="language-json"><code class="languauge-json">https://corehr.hrcloud.com/integrations/api/v1/employees</code></pre>
+                                        </p>
+                                        <p>All request to this endpoint should use the <code>POST</code> request method for both creating and updating records.</p>
+                                    </div>
+                                    <div id="jsonBody" class="section-block">
+                                        <h6>JSON Body:</h6>
+                                        <pre class="language-json">
+                                            <code class="language-json">
+{
+    “email”: “employee@company.com”,
+    “firstName”: “Employee”,
+    “lastName”: “Employee”,
+    “startDate”: “2018-01-17”,
+    “recordStatus”: “Active”
+    “accountType”: “Employee”,
+    “employmentStatus”: “Active”,
+    “employeeNumber”: “company-1234-emp”,
+    “dateOfBirth”: “2018-01-17”,
+    “managerEmail”: “manager@company.com”,
+    “location” : {
+        “name”: “LA Office”,
+        “code”: “LA”
+    },
+    “department” : {
+        “name”: “Research and Development”,
+        “code”: “R&D”,
+    },
+    “division” : {
+        “name”: “Canada Division”,
+        “code”: “CAN”,
+    },
+    “position” : {
+        “name”: “Software Engineer”,
+        “code”: “SDE”,
+    },
+    “address1”: “1000 N Sepulveda Blvd”,
+    “address2”: “Suite 1000”,
+    “city”: “Los Angeles”,
+    “state”: “California”,
+    “zipCode”: “90034”,
+    “countryName”: “United States
+}                                                    
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div id="apiResponses" class="section-block">
+                                    <h6>API Responses</h6>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Action</th>
+                                                    <th>Status</th>
+                                                    <th>Body</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Record Created</td>
+                                                    <td><code>201 Created</code></td>
+                                                    <td>Empty</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Record Updated</td>
+                                                    <td><code>200 OK</code></td>
+                                                    <td>Empty</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="fieldDetails" class="section-block">
+                                    <h6>Field Details</h6>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Field Name</th>
+                                                    <th>Required</th>
+                                                    <th>Options</th>
+                                                    <th>Default</th>
+                                                    <th>Notes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>email</code></td>
+                                                    <td><i class="fa fa-check"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>N/A</td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>firstName</code></td>
+                                                    <td><i class="fa fa-check"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>N/A</td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>lastName</code></td>
+                                                    <td><i class="fa fa-check"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>N/A</td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>startDate</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>recordStatus</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>"Active", "Inactive"</td>
+                                                    <td>"Active"</td>
+                                                    <td>This field is case sensitive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>accountType</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>"Employee", "Admin"</td>
+                                                    <td>"Employee"</td>
+                                                    <td>This field is case senstive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>employmentStatus</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>"Active", "Leave of Absence", "Terminated"</td>
+                                                    <td>"Active"</td>
+                                                    <td>This field is case and space sensitive</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>employeeNumber</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>Autogenerated when <code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>dateOfBirth</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>managerEmail</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>location</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>Tenant default location is used when <code>null</code></td>
+                                                    <td><code>name</code> and <code>code</code> required when present</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>department</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>Tenant default department is used when <code>null</code></td>
+                                                    <td><code>name</code> and <code>code</code> required when present</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>division</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>Tenant default division is used when <code>null</code></td>
+                                                    <td><code>name</code> and <code>code</code> required when present</td>
+                                                </tr>  
+                                                <tr>
+                                                    <td><code>position</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td>Tenant default position is used when <code>null</code></td>
+                                                    <td><code>name</code> and <code>code</code> required when present</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>address1</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>address2</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>city</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>state</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>zipCode</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>countryName</code></td>
+                                                    <td><i class="fa fa-times"></i></td>
+                                                    <td>N/A</td>
+                                                    <td><code>null</code></td>
+                                                    <td>N/A</td>
+                                                </tr>  
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section><!--//doc-section-->
+                            <section id="countries-section" class="doc-section">
+                                <h2 class="section-title">Supported Countries</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Get the list of countries supported by HR Cloud.
+                                    </p>
+                                    <div class="section-block">
+                                        <h6>Full URL</h6>
+                                        <pre class="language-json"><code class="language-json">https://corehr.hrcloud.com/integrations/api/v1/countries</code></pre>
+                                        <p>This endpoints supports the <code>GET</code> request method only.</p>
+                                    </div>
+                                    <div id="countriesResponse" class="section-body">
+                                        <h6>JSON Body</h6>
+                                        <pre class="language-json">
+                                            <code class="language-json">
+[
+    "United States",
+    "Angola",
+    "Canada",
+    ...
+]
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                            </section><!--//doc-section-->
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar hidden-xs">
+                        <nav id="doc-nav">
+                            <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
+                                <li><a class="scrollto" href="#overview-section">Overview</a></li>
+                                <li>
+                                    <a class="scrollto" href="#authorization-section">Authorization</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a class="scrollto" href="#step1">Step One</a></li>
+                                        <li><a class="scrollto" href="#step2">Step Two</a></li>
+                                    </ul><!--//nav-->
+                                </li>
+                                <li>
+                                    <a class="scrollto" href="#errors-section">Errors</a>
+                                </li>
+                                <li>
+                                    <a class="scrollto" href="#employee-section">Employee Records</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a class="scrollto" href="#jsonBody">JSON Body</a></li>
+                                        <li><a class="scrollto" href="#apiResponses">API Responses</a></li>
+                                        <li><a class="scrollto" href="#fieldDetails">Field Details</a></li>
+                                    </ul><!--//nav-->
+                                </li>
+                                <li><a class="scrollto" href="#countries-section">Support Countries</a></li>
+                            </ul><!--//doc-menu-->
+                        </nav>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-right">
+        <div class="container attribution-container">
+            <small class="copyright">Design by <a href="http://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a></small>
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/min/prism-min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>                                                                
+    <script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+
