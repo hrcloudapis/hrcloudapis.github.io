@@ -44,7 +44,7 @@
             <div class="container">
                 <div id="doc-header" class="doc-header text-center">
                     <h1 class="doc-title"><i class="icon fa fa-file-code-o"></i> Quick Start</h1>
-                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: Nov 30th, 2017</div>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: Dec 7th, 2017</div>
                 </div><!--//doc-header-->
                 <div class="doc-body">
                     <div class="doc-content">
@@ -56,7 +56,7 @@
                                         <a href="https://www.hrcloud.com/" target="_blank">HR Cloud</a>'s Employee API is a RESTful API that allows integration partners to create and update employee data&mdash;as well as associated entities such as departments, locations, and positions&mdash;in HR Cloud.
                                     </p>
                                     <p>
-                                        Once the Employee API has been enbabled for your tentant (see below), we suggest using <a href="https://www.getpostman.com/" target="_blank">Postman</a> to get started on trying out some requests.
+                                        Once the Employee API has been enabled(see below), we suggest using <a href="https://www.getpostman.com/" target="_blank">Postman</a> to get started on trying out some requests.
                                     </p>
                                 </div>
                             </section><!--//doc-section-->
@@ -80,7 +80,7 @@
                                 <div id="step2"  class="section-block">
                                     <h3 class="block-title">Step Two</h3>
                                     <p>
-                                        Once the APIs have been enabled for your tenant, copy the authorization credentials provided for use in all HTTP requests. HR Cloud Integrations APIs use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication" target="_blank">HTTP Basic Authentication</a> scheme so the base64-encoded string provided should be used at the value for the <code>Authorization</code> header in all API requests.
+                                        Once the APIs have been enabled, copy the authorization credentials provided for use in all HTTP requests. HR Cloud Integrations APIs use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication" target="_blank">HTTP Basic Authentication</a> scheme so the base64-encoded string provided should be used at the value for the <code>Authorization</code> header in all API requests.
                                     </p>
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
@@ -140,39 +140,39 @@
                                         <pre class="language-json">
                                             <code class="language-json">
 {
-    “email”: “employee@company.com”,
-    “firstName”: “Employee”,
-    “lastName”: “Employee”,
-    “startDate”: “2018-01-17”,
-    “recordStatus”: “Active”
-    “accountType”: “Employee”,
-    “employmentStatus”: “Active”,
-    “employeeNumber”: “company-1234-emp”,
-    “dateOfBirth”: “2018-01-17”,
-    “managerEmail”: “manager@company.com”,
-    “location” : {
-        “name”: “LA Office”,
-        “code”: “LA”
+    "email": "employee@company.com",
+    "firstName": "Employee",
+    "lastName": "Employee",
+    "startDate": "2018-01-17",
+    "recordStatus": "Active",
+    "accountType": "Employee",
+    "employmentStatus": "Active",
+    "employeeNumber": "company-1234-emp",
+    "dateOfBirth": "2018-01-17",
+    "managerEmail": "manager@company.com",
+    "location": {
+        "name": "LA Office",
+        "code": "LA"
     },
-    “department” : {
-        “name”: “Research and Development”,
-        “code”: “R&D”,
+    "department": {
+        "name": "Research and Development",
+        "code": "R&D"
     },
-    “division” : {
-        “name”: “Canada Division”,
-        “code”: “CAN”,
+    "division": {
+        "name": "Canada Division",
+        "code": "CAN"
     },
-    “position” : {
-        “name”: “Software Engineer”,
-        “code”: “SDE”,
+    "position": {
+        "name": "Software Engineer",
+        "code": "SDE"
     },
-    “address1”: “1000 N Sepulveda Blvd”,
-    “address2”: “Suite 1000”,
-    “city”: “Los Angeles”,
-    “state”: “California”,
-    “zipCode”: “90034”,
-    “countryName”: “United States
-}                                                    
+    "address1": "1000 N Sepulveda Blvd",
+    "address2": "Suite 1000",
+    "city": "Los Angeles",
+    "state": "California",
+    "zipCode": "90034",
+    "countryName": "United States"
+}                                                  
                                             </code>
                                         </pre>
                                     </div>
