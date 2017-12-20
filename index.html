@@ -123,17 +123,15 @@
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
                             <section id="employee-section" class="doc-section">
-                                <h2 class="section-title">Employee Records</h2>
+                                <h2 class="section-title">Employee API</h2>
                                 <div class="section-block">
                                     <p>
                                         Create or update employee records in HR Cloud.
                                     </p>
                                     <div class="section-block">
                                         <h6>Full URL:</h6>
-                                        <p>
-                                            <pre class="language-json"><code class="languauge-json">https://corehr.hrcloud.com/integrations/api/v1/employees</code></pre>
-                                        </p>
-                                        <p>All request to this endpoint should use the <code>POST</code> request method for both creating and updating records.</p>
+                                        <pre class="language-json"><code class="languauge-json">https://corehr.hrcloud.com/integrations/api/v1/employees</code></pre>
+                                        <p>All requests to this endpoint should use the <code>POST</code> request method for both creating and updating records.</p>
                                     </div>
                                     <div id="jsonBody" class="section-block">
                                         <h6>JSON Body:</h6>
@@ -402,6 +400,255 @@
                                     </div>
                                 </div>
                             </section><!--//doc-section-->
+                            <section class="doc-section" id="background-check-section">
+                                <h2 class="section-title">Background Check API</h2>
+                                <div class="section-block">
+                                    <p>The Background Check API allows tenants to integrate with thier background check provider of choice by providing endpoints that accept background check report data on employees and report types offered by the third party provider. Additionally, a webhook with the background check provider allows users to request background checks as a part or upon completion of employee onboarding tasks.</p>
+                                </div>
+                                <div class="section-block" id="background-check-reports">
+                                    <h3 class="block-title">Background Check Reports</h3>
+                                    <div class="section-block">
+                                        <p>Create or update background check report for employee.</p>
+                                        <div class="section-block">
+                                            <h6>Full URL:</h6>
+                                            <pre class="language-json"><code class="language-json">https://corehr.hrcloud.com/integrations/api/v1/background-check-reports</code></pre>
+                                            <p>All requests to this endpoint should use the <code>POST</code> request method for both creating and updating records.</p>
+                                        </div>
+                                        <div class="section-block">
+                                            <h6>JSON Body:</h6>
+                                            <pre class="language-json">
+                                                <code class="language-json">
+{
+    "employeeEmail": "employee@company.com",
+    "requestDateTime": "2018-02-15T11:00:00Z",
+    "status": "Complete",
+    "statusDateTime": "2018-03-17T11:00:00Z",
+    "reportTypeName": "BASIC",
+    "url": "https://vendor.site.com/reports/report-id-13"
+}
+                                                </code>
+                                            </pre>
+                                        </div>
+                                        <div class="section-block">
+                                                <h6>API Responses</h6>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Action</th>
+                                                                <th>Status</th>
+                                                                <th>Body</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Record Created</td>
+                                                                <td><code>201 Created</code></td>
+                                                                <td>Empty</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Record Updated</td>
+                                                                <td><code>200 OK</code></td>
+                                                                <td>Empty</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="section-block">
+                                                <h6>Field Details</h6>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Field Name</th>
+                                                                <th>Required</th>
+                                                                <th>Options</th>
+                                                                <th>Default</th>
+                                                                <th>Notes</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><code>employeeEmail</code></td>
+                                                                <td><i class="fa fa-check"></i></td>
+                                                                <td>N/A</td>
+                                                                <td>N/A</td>
+                                                                <td>Email identifier for report subject</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><code>requestDateTime</code></td>
+                                                                <td><i class="fa fa-check"></i></td>
+                                                                <td>N/A</td>
+                                                                <td>N/A</td>
+                                                                <td>Date/time report was requested</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><code>status</code></td>
+                                                                <td><i class="fa fa-check"></i></td>
+                                                                <td>N/A</td>
+                                                                <td>N/A</td>
+                                                                <td>Arbitrary string explaining report status</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><code>statusDateTime</code></td>
+                                                                <td><i class="fa fa-check"></i></td>
+                                                                <td>N/A</td>
+                                                                <td>N/A</td>
+                                                                <td>Date/time of report status change</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><code>reportTypeName</code></td>
+                                                                <td><i class="fa fa-times"></i></td>
+                                                                <td>N/A</td>
+                                                                <td><code>null</code></td>
+                                                                <td>Arbitrary string explaining report type</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><code>url</code></td>
+                                                                <td><i class="fa fa-times"></i></td>
+                                                                <td>N/A</td>
+                                                                <td><code>null</code></td>
+                                                                <td>Link to report record</td>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>  
+                                    </div>
+                                </div>
+                                <div class="section-block" id="background-check-report-types">
+                                    <h3 class="block-title">
+                                        Background Check Report Types
+                                    </h3>
+                                    <div class="section-block">
+                                        <p>Create or update background check report types.</p>
+                                        <div class="section-block">
+                                            <h6>Full URL:</h6>
+                                            <pre class="language-json"><code class="language-json">https://corehr.hrcloud.com/integrations/api/v1/background-check-report-types</code></pre>
+                                            <p>All requests to this endpoint should use the <code>POST</code> request method for both creating and updating records.</p>
+                                        </div>
+                                        <div class="section-block">
+                                            <h6>JSON Body:</h6>
+                                            <pre class="language-json">
+                                                <code class="language-json">
+[
+    {
+        "code": "BASIC_SCREENING",
+        "name": "Basic worker background check"
+    },
+    {
+        "code": "ENHANCED_SCREENING",
+        "name": "Enhanced worker background check"
+    }
+]
+                                                </code>
+                                            </pre>
+                                        </div>
+                                        <div class="section-block">
+                                            <h6>API Responses</h6>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Status</th>
+                                                            <th>Body</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Record Created</td>
+                                                            <td><code>201 Created</code></td>
+                                                            <td>Empty</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Record Updated</td>
+                                                            <td><code>200 OK</code></td>
+                                                            <td>Empty</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fa fa-info-circle"></i>
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="callout-title">Report Types</h4>
+                                            <p>
+                                                Creating report types in HR Cloud is not required for initiating and completing background check tasks; however, once a list of report types has been created in HR Cloud, selecting a report type is required.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section-block" id="background-check-webhook">
+                                    <h3 class="block-title">
+                                        Request for Background Check Webhook
+                                    </h3>
+                                    <div class="section-block">
+                                        <p>Request/initiate background check for employee with third party provider.</p>
+                                        <div class="section-block">
+                                            <h6>Full URL:</h6>
+                                            <pre class="language-json"><code class="language-json">https://vendor.site.com/path-added-in-hrc-api-settnigs-page</code></pre>
+                                            <p>HR Cloud will use the <code>POST</code> request method for both requesting/initiating background checks to the endpoint input in the <a href="https://corehr.hrcloud.com/#/Settings/HrcIntegrationsApi" target="_blank">HR Cloud Integration API</a> settings page.</p>
+                                        </div>
+                                        <div class="section-block">
+                                            <h6>JSON Body:</h6>
+                                            <pre class="language-json">
+                                                <code class="language-json">
+{
+    "employeeEmail": "employee@company.com",
+    "requestDateTime": "2018-02-15T11:00:00Z",
+    "reportTypeCode": "BASIC_SCREENING"
+}
+                                                </code>
+                                            </pre>
+                                        </div>
+                                        <div class="section-block">
+                                            <h6>API Responses</h6>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Status</th>
+                                                            <th>Body</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Record Created</td>
+                                                            <td><code>201 Created</code></td>
+                                                            <td>Empty</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="callout-block callout-warning">
+                                            <div class="icon-holder">
+                                                <i class="fa fa-exclamation-triangle"></i>
+                                            </div><!--//icon-holder-->
+                                            <div class="content">
+                                                <h4 class="callout-title">Retries and Timeouts for Background Check Webhook</h4>
+                                                <p>
+                                                    For any HTTP status other than <code>200 OK</code>, the request to the webhook endpoint will be retried a maximum of 5 times with the following delays:
+                                                    <ul class="list">
+                                                        <li>Immediately</li>
+                                                        <li>1 minute</li>
+                                                        <li>10 minutes</li>
+                                                        <li>1 hour</li>
+                                                        <li>1 day</li>
+                                                    </ul>
+                                                </p>
+                                                <p><strong>Each request will forcefully timeout after 10 seconds.</strong></p>
+                                            </div><!--//content-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                         </div><!--//content-inner-->
                     </div><!--//doc-content-->
                     <div class="doc-sidebar hidden-xs">
@@ -419,14 +666,22 @@
                                     <a class="scrollto" href="#errors-section">Errors</a>
                                 </li>
                                 <li>
-                                    <a class="scrollto" href="#employee-section">Employee Records</a>
+                                    <a class="scrollto" href="#employee-section">Employee API</a>
                                     <ul class="nav doc-sub-menu">
                                         <li><a class="scrollto" href="#jsonBody">JSON Body</a></li>
                                         <li><a class="scrollto" href="#apiResponses">API Responses</a></li>
                                         <li><a class="scrollto" href="#fieldDetails">Field Details</a></li>
+                                        <li><a class="scrollto" href="#countries-section">Support Countries</a></li>
                                     </ul><!--//nav-->
                                 </li>
-                                <li><a class="scrollto" href="#countries-section">Support Countries</a></li>
+                                <li>
+                                    <a href="#background-check-section" class="scrollto">Background Check API</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a href="#background-check-reports" class="scrollto">Background Check Reports</a></li>
+                                        <li><a href="#background-check-report-types" class="scrollto">Background Check Report Types</a></li>
+                                        <li><a href="#background-check-webhook" class="scrollto">Background Check Webhook</a></li>
+                                    </ul>
+                                </li>
                             </ul><!--//doc-menu-->
                         </nav>
                     </div><!--//doc-sidebar-->
